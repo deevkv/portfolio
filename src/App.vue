@@ -1,60 +1,81 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
+    <v-navigation-drawer 
+      app 
+      temporary
+      v-model="drawer"
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+      <v-list>
+        <v-list-item
+        v-for="link in links"
+        :key="link.title"
+        :to="link.url"
+        >
+          <v-list-item-content>
+            <v-list-item-title v-text="link.title"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-app-bar class="app-bar" app dark height="48px" color="#1F1F1F">
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+      <div class="app-bar__title-wrapper">
+        <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-md-and-up app-bar__nav-icon"></v-app-bar-nav-icon>
+        <v-toolbar-title class="app-bar__title">Truevers</v-toolbar-title>
       </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-toolbar-items class="hidden-sm-and-down app-bar__links">
+        <v-btn
+          v-for="link in links"
+          :key="link.title"
+          :to="link.url"
+          text
+        >{{link.title}}</v-btn>
+      </v-toolbar-items>
     </v-app-bar>
-
     <v-content>
-      <HelloWorld/>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
+<style>
+  .app-bar {
+    position: relative;
+  }
+
+  .app-bar__nav-icon {
+    float: left;
+  }
+
+  .app-bar__title-wrapper {
+    position: absolute;
+    top: 0;
+    left: 10px;
+  }
+
+  .app-bar__title {
+    padding-top: 10px;
+    padding-left: 10px;
+    text-transform: uppercase;
+  }
+
+  .app-bar__links {
+    margin: 0 auto;
+  }
+
+</style>
+  
 <script>
-import HelloWorld from './components/HelloWorld';
-
-export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-};
+  export default {
+    data () {
+      return {
+        drawer: false,
+        links: [
+          {title: 'Portfolio', url: '/portfolio'},
+          {title: 'About', url: '/about'},
+          {title: 'Contacts', url: '/contacts'}
+        ]
+      }
+    }
+  } 
 </script>
