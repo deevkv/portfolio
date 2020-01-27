@@ -21,7 +21,9 @@
 
       <div class="app-bar__title-wrapper">
         <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-md-and-up app-bar__nav-icon"></v-app-bar-nav-icon>
-        <v-toolbar-title class="app-bar__title">Truevers</v-toolbar-title>
+        <v-toolbar-title class="app-bar__title">
+         <router-link to="/" tag="span">Kirill Deev</router-link>
+        </v-toolbar-title>
       </div>
       <v-toolbar-items class="hidden-sm-and-down app-bar__links">
         <v-btn
@@ -54,9 +56,11 @@
   }
 
   .app-bar__title {
+    display: block;
     padding-top: 10px;
     padding-left: 10px;
     text-transform: uppercase;
+    cursor: pointer;
   }
 
   .app-bar__links {
