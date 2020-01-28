@@ -56,20 +56,24 @@
         windowHome.style.backgroundColor = 'green';
       
       },*/
-      draggable: function () {
+      draggable: function (event) {
         let windowHome = this.$refs.windowHome.$refs.link;
         /*let windowWrapper = this.$refs.windowWrapper;*/
         let shiftX = event.clientX - windowHome.getBoundingClientRect().left;
         let shiftY = event.clientY - windowHome.getBoundingClientRect().top;
+/*        let windowWidth = windowHome.event.offsetWidth;
+        let windowHeight = windowHome.event.offsetHeight;*/
+
+        windowHome.style.width = getComputedStyle(windowHome).width;
+
 
         windowHome.style.position = 'absolute';
         windowHome.style.zIndex = 1000;
+        
 
-        window.console.log(this.$refs.windowHome.$refs.link.style);
-        /*window.console.log(this.$refs.windowWrapper);*/
+        /*window.console.log(windowWidth);
+        window.console.log(windowHeight);*/
 
-        /*document.body.append(windowHome);*/
-       /* windowWrapper.append(windowHome);*/
 
         moveAt(event.pageX, event.pageY);
 
@@ -111,12 +115,11 @@
   }
 
   .home__card {
-    width: 700px;
-    height: 250px;
-  }
+    max-width: 700px;
+    min-height: 250px;
+  } 
 
   .home__card-title {
-    color: green;
     font-family: sans-serif;
     font-size: 2rem !important; 
   }
