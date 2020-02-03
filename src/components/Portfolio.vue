@@ -8,19 +8,27 @@
         <section class="portfolio-toolbar">
           <div class="portfolio-toolbar__title">Truevers: <span class="subtitle-1 portfolio-toolbar__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, expedita.</span></div>
           <div>
-            <v-btn class="subtitle-1 portfolio-toolbar__button" text tile>All works /</v-btn>
-            <v-btn class="subtitle-1 portfolio-toolbar__button" text tile> Web sites /</v-btn>
-            <v-btn class="subtitle-1 portfolio-toolbar__button" text tile>Lending page /</v-btn>
-            <v-btn class="subtitle-1 portfolio-toolbar__button" text tile>Online store /</v-btn>
-            <v-btn class="subtitle-1 portfolio-toolbar__button" text tile>Portals and web services /</v-btn>
+            <v-btn class="subtitle-1 portfolio-toolbar__button" text tile @click="searchName=''">All works /</v-btn>
+            <v-btn class="subtitle-1 portfolio-toolbar__button" text tile @click="searchName='web_sites'"> Web sites /</v-btn>
+            <v-btn class="subtitle-1 portfolio-toolbar__button" text tile @click="searchName='lending_page'">Lending page /</v-btn>
+            <v-btn disabled class="subtitle-1 portfolio-toolbar__button" text tile @click="searchName='online_store'">Online store /</v-btn>
+            <v-btn disabled class="subtitle-1 portfolio-toolbar__button" text tile @click="searchName='Portals_and_web_services'">Portals and web services /</v-btn>
           </div>
-        </section>  
+         <!--  <input type="text" v-model="searchName">
+         <button @click="searchName='2'">Number 2</button>
+         <button @click="searchName='3'">Number 3</button> -->
+          <!-- <ul class="list">
+            <li 
+              v-for="name of filteredNames" :key="name.id">{{name}}</li>
+          </ul> -->
+        </section>
         </v-col>
       </v-row>    
       <v-row>
         <v-col sm="12"
-          v-for="theme in portfolio"
-          :key="theme.name" 
+          v-for="theme in filteredNames"
+          :key="theme.name"
+          
         >
           <v-card 
             dark
@@ -49,6 +57,7 @@
                   class="portfolio-card__image"
                   :src="theme.imageSrc"
                   position="top">
+                    <a class="portfolio-card__image-link" v-bind:href="theme.src" target="_blank"></a>
                 </v-img>
               </v-col>
             </v-row>
@@ -63,6 +72,7 @@
   export default {
     data () {
       return {
+        searchName: '',
         portfolio: [
           {
             name: 'Meduza OS',
@@ -72,6 +82,8 @@
             data: '2019',
             github: 'https://github.com/deevkv/meduzaos',
             imageSrc: require('@/assets/img/meduzaos.jpg'),
+            src: 'https://deevkv.github.io/meduzaos',
+            category: 'web_sites'
           },
           {
             name: 'Truevers Music',
@@ -81,6 +93,8 @@
             data: '2019',
             github: 'https://github.com/deevkv/truevers_music',
             imageSrc: require('@/assets/img/truevers_music.jpg'),
+            src: 'https://deevkv.github.io/truevers_music',
+            category: 'web_sites'
           },
           {
             name: 'Tatoo Studio',
@@ -90,6 +104,8 @@
             data: '2019',
             github: 'https://github.com/deevkv/tattoo',
             imageSrc: require('@/assets/img/tatoo.jpg'),
+            src: 'https://deevkv.github.io/tattoo',
+            category: 'lending_page'
           },
           {
             name: 'Portfolio',
@@ -99,8 +115,23 @@
             data: '2020',
             github: 'https://github.com/deevkv/portfolio',
             imageSrc: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
+            src: 'https://deevkv.github.io',
+            category: 'web_sites'
           }   
+        ],
+        /*names: ['Vlad', 'Max', 'Elena']*/
+        names: [
+          {id: '1', name: "Вася"},
+          {id: '2', name: "Петя"},
+          {id: '3', name: "Маша"}
         ]
+      }
+    },
+    computed: {
+      filteredNames: function() {
+        return this.portfolio.filter(elem => {
+          return elem.category.indexOf(this.searchName) !== -1;
+        })
       }
     }
   }
@@ -108,6 +139,14 @@
 
 <style lang="scss">
   @import '@/assets/sass/variables.sass';
+
+  input {
+    border: 1px solid orange !important;
+  }
+
+  .list {
+    color: #000;
+  }
 
   .portfolio {
     height: 100%;
@@ -145,6 +184,22 @@
     text-transform: none !important;
     color: $main-color !important; 
   }
+
+  .portfolio-card {
+    opacity: 0;
+    animation: show 1.5s;
+    animation-fill-mode: forwards;
+    transition: 0.2s;
+  }
+
+  @keyframes show{
+    0%{
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }  
 
   .portfolio-card__description-block {
      position: relative;
@@ -192,15 +247,29 @@
 
   .portfolio-card__image {
     height: 160px;
-    border-left: 8px solid #202020/* #a7a7a7 */;
-    border-right: 8px solid #202020/* #a7a7a7 */;
+    border-left: 8px solid #202020;
+    border-right: 8px solid #202020;
+    opacity: 0.8;
+    transition: 0.2s;
+    animation: showImage 1s;
+    animation-fill-mode: forwards;
+  }
+
+  .portfolio-card__image:hover {
+    opacity: 1;
   }
 
   @media (max-width: 1263px) {
 
     .portfolio-card__image {
-      height: 100%;
+      /* height: 100%; */
     }
+  }
+
+  .portfolio-card__image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   @media (max-width: 600px) {
@@ -216,5 +285,10 @@
     .portfolio-card__image {
       height: 100px;
     }
+
+    .portfolio-card__description-block::before {
+      display: none;
+    }
+
   }
 </style>

@@ -7,7 +7,7 @@
             <v-card
               dark
               tile
-              class="mx-auto home__card"
+              class="mx-auto elevation-8 home__card"
               max-width="700"
               min-height="250"
               color="#141414"
