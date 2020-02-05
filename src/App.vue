@@ -2,11 +2,16 @@
   <v-app>
     <v-navigation-drawer 
       app 
+      dark
       temporary
       v-model="drawer"
+      color="#1a1a1a"
+      width="180"
+      class="navigation-drawer"
     >
       <v-list>
         <v-list-item
+        class="navigation-drawer__list"
         v-for="link in links"
         :key="link.title"
         :to="link.url"
@@ -22,7 +27,7 @@
       <div class="app-bar__title-wrapper">
         <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-md-and-up app-bar__nav-icon"></v-app-bar-nav-icon>
         <v-toolbar-title class="app-bar__title">
-         <router-link to="/" tag="span">Kirill Deev<span class="app-bar__title-dis">Frontend developer</span></router-link>
+         <router-link to="/" tag="span"><img src="@/assets/img/logo.svg" alt="Logo"><span class="app-bar__title-description">Frontend developer</span></router-link>
         </v-toolbar-title>
       </div>
       <v-toolbar-items class="hidden-sm-and-down app-bar__links">
@@ -43,6 +48,8 @@
 
 <style lang="scss">
   @import '@/assets/sass/variables.sass';
+/*   @import '@/assets/sass/scaffolding.sass'; */
+  /* @import '@/assets/sass/main.sass'; */
 
   a {
     color: $main-color !important;
@@ -51,6 +58,18 @@
 
   a:visited {
     color: $visit-color !important;
+  }
+
+  * {
+    font-family: "JetBrainsMono-Regular", sans-serif;
+  }
+
+  .navigation-drawer {
+    z-index: 10000;
+  }
+
+  .navigation-drawer__list {
+    
   }
 
   .app-bar {
@@ -75,7 +94,7 @@
     cursor: pointer;
   }
 
-  .app-bar__title-dis {
+  .app-bar__title-description {
     font-size: 0.8rem;
     margin-left: .5rem;
     text-transform: none;

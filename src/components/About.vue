@@ -1,22 +1,21 @@
 <template>
   <section class="about">
       <v-container class="about__container">
-        <v-row justify="center">
+        <v-row justify="center" align="center">
           <v-col>
             <v-card
               dark
               tile
-              class="px-10 py-10 mx-auto about__card "
+              class="py-7 px-sm-7 py-sm-7 elevation-8 mx-auto about__card "
               color="#141414"
               ref="windowHome"
             >
-              <h1 class="px-10 pb-5 about__card-title">Truevers: <span class="subtitle-1 about__card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, expedita. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, expedita.</span></h1>
-              <v-img 
+              <h1 class="px-xs-10 px-7 pt-3 pb-5 about__card-title">Truevers: <span id="typingTextAbout" class="about__card-description"></span></h1>
+              <img
                 width="643"
                 height="523"
-                class="mt-12 mb-12 mx-auto about-card__image"
-                src="@/assets/img/stack.svg">
-              </v-img>               
+                class="mx-auto about-card__image"
+                src="@/assets/img/stack.svg">            
             </v-card>
           </v-col>
         </v-row>
@@ -28,6 +27,33 @@
   export default {
     data () {
       return {}
+    },
+    methods: {
+      textAnimation: function(i) {
+        var dataText = [ "Truevers is my stack Lorem ipsum dolor sit amet, consectetur"];
+
+        // проверить, существует ли dataText [i]
+        if (i < dataText[i].length) {
+         // текст существует! запустить анимацию пишущей машинки
+         typeWriter(dataText[i], 0);
+        }
+  
+        function typeWriter(text, i) {
+          // проверить, что текст еще не закончен
+          if (i < (text.length)) {
+            // добавить следующий символ в h1
+           document.getElementById("typingTextAbout").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+            // вызов функции для следующего символа
+            setTimeout(function() {
+              typeWriter(text, i + 1)
+            }, 20);
+          }
+        }
+      }
+    },
+    mounted() {
+     this.textAnimation(0);
     }
   }
 </script>
@@ -38,25 +64,19 @@
   .about {
     height: 100%;
     background: $body-background;
+    /* background-image: url(../assets/img/classy-fabric.png); */
     color: #fff;
   }
 
-/*   .contacts:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.7;
-  background: linear-gradient(45deg, #820af5, #0aabf5, #f50ae2, #f59d0a);
-  opacity: 1;
-  transition: 5s;
-}  */
+  .about__container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+
 
   .about__card {
     max-width: 840px;
-    margin-top: 50px;
   } 
 
   .about__card:hover {
@@ -64,20 +84,30 @@
   } 
 
   .about__card-title {
+    min-height: 80px;
     margin: 0;
     padding: 0;
+    font-weight: normal;
     font-size: 1rem;
     color: $main-color;
   }
 
   .about__card-description {
-    margin-left: 0.3rem;
     color: #fff;
+    border-right: 0.5em solid; /* каретка */
+    animation: caret 1s steps(1) infinite; 
+  }
+
+  @keyframes caret {
+    50% {
+      border-color: transparent;
+    }
   }
 
   .about-card__image {
-    width: 643px !important;
+    width: 100%;
     height: auto;
+    padding: 28px;
   }
 
 
@@ -89,5 +119,11 @@
       opacity:1;
     }
   }
+
+  @media (max-width: 600px) {
+    .about__container {
+      height: 80%;
+    }
+  }  
 
 </style>

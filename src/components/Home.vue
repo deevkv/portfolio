@@ -17,33 +17,25 @@
               
             >
               <v-system-bar
-                color="#313135"
+                color="#434343"
                 dark
                 @mousedown="draggable"
                 :class="{active: hover} "
                  
               >
                 <v-spacer></v-spacer>
-                <button class="home__card-button"></button>
-                <!-- <v-spacer></v-spacer>
-                              
-                <v-icon>mdi-window-minimize</v-icon>
-                              
-                <v-icon>mdi-window-maximize</v-icon>
-                
-                <v-icon>mdi-close</v-icon> -->
+                <button class="home__card-button-close"></button>
               </v-system-bar>
-              <v-card-title class="home__card-title">Truevers:<span class="home__card-title--text">Hello, my friend.</span></v-card-title>
-              <!-- <span v-if="hover" >Secret messege</span> -->
-              <v-card-text class="text--primary">
-                
+              <h1 class="home__card-title">Truevers:<span id="typingTextHome" class="home__card-description"></span></h1>
+              <v-card-text class="home__card-button-block">
+                <a
+                  class="home__card-button"
+                  v-for="link in links"
+                  :key="link.title"
+                  :to="link.url"
+                  text
+                >/{{link.title}}</a>
               </v-card-text>
-                  
-              <!-- <v-card-actions>
-                <v-spacer />
-                <v-btn text :to="'/ad/' + ad.id">Open</v-btn>
-                <v-btn class="primary">Buy</v-btn>
-              </v-card-actions> -->
             </v-card>
           </div>
         </v-col>
@@ -57,7 +49,12 @@
   export default {
     data () {
       return {
-        hover: false
+        hover: false,
+        links: [
+          {title: 'Portfolio', url: '/portfolio'},
+          {title: 'About', url: '/about'},
+          {title: 'Contacts', url: '/contacts'}
+        ]
       }
     },
     methods: {
@@ -94,7 +91,32 @@
         windowHome.ondragstart = function() {
           return false;
         };
+      },
+      textAnimation: function(i) {
+        var dataText = [ "Hello, my friend. Welcome to my site"];
+
+        // проверить, существует ли dataText [i]
+        if (i < dataText[i].length) {
+         // текст существует! запустить анимацию пишущей машинки
+         typeWriter(dataText[i], 0);
+        }
+  
+        function typeWriter(text, i) {
+          // проверить, что текст еще не закончен
+          if (i < (text.length)) {
+            // добавить следующий символ в h1
+           document.getElementById("typingTextHome").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+            // вызов функции для следующего символа
+            setTimeout(function() {
+              typeWriter(text, i + 1)
+            }, 50);
+          }
+        }
       }
+    },
+    mounted() {
+     this.textAnimation(0);
     }
   }
 </script>
@@ -105,21 +127,22 @@
   .home {
     height: 100%;
     background: $body-background;
+    /* background-image: url(../assets/img/classy-fabric.png); */
     color: #fff;
   }
 
-/*   .home:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.7;
-  background: linear-gradient(45deg, #820af5, #0aabf5, #f50ae2, #f59d0a);
-  opacity: 1;
-  transition: 5s;
-}  */
+    /* .home:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.7;
+      background: linear-gradient(45deg, #820af5, #0aabf5, #f50ae2, #f59d0a);
+      opacity: 1;
+      transition: 5s;
+    } */
 
   .home__card {
     max-width: 700px;
@@ -132,14 +155,49 @@
 }  */
 
   .home__card-title {
-    font-family: sans-serif;
-    font-size: 1.2rem !important; 
+    font-size: 1.1rem !important; 
+    font-weight: normal !important;
     color: $main-color;
   }
 
-  .home__card-title--text {
+  .home__card-description {
     margin-left: 0.6rem;
     color: #fff;
+    border-right: 0.5em solid; /* каретка */
+    animation: caret 1s steps(1) infinite; 
+  }
+
+  @keyframes caret {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  .home__card-button {
+    margin-right: 10px;
+    font-size: 1.1rem;
+    font-weight: normal !important;
+  }
+
+  .home__card-button:hover {
+    color: orange !important;
+  }
+
+  .home__card-button-block {
+    padding-top: 10px !important;
+    opacity: 0;
+    animation: show 1s;
+    animation-fill-mode: forwards;
+    animation-delay: 3s;
+  }
+
+  @keyframes show{
+    0%{
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
   }
 
   .home__container {
@@ -176,7 +234,7 @@
     background: #000;
   }
 
-  .home__card-button {
+  .home__card-button-close {
     width: 20px;
     height: 20px;
     border: 2px solid transparent;
@@ -185,13 +243,10 @@
     z-index: 1000;
   }
 
-  .home__card-button:hover {
+  .home__card-button-close:hover {
     border: 2px solid #2bbc50;
     transition: .5s;
   }
-
-  
-
 
   .active {
     background: $main-color /* #5dfa8b */ !important;

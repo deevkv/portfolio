@@ -4,9 +4,8 @@
       <v-row>
         <v-col xl="12"
         >
-
         <section class="portfolio-toolbar">
-          <div class="portfolio-toolbar__title">Truevers: <span class="subtitle-1 portfolio-toolbar__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, expedita.</span></div>
+          <h1 class="pb-5 px-4 portfolio-toolbar__title">Truevers: <span id="typingText" class="portfolio-toolbar__description"></span></h1>
           <div>
             <v-btn class="subtitle-1 portfolio-toolbar__button" text tile @click="searchName=''">All works /</v-btn>
             <v-btn class="subtitle-1 portfolio-toolbar__button" text tile @click="searchName='web_sites'"> Web sites /</v-btn>
@@ -25,7 +24,7 @@
         </v-col>
       </v-row>    
       <v-row>
-        <v-col sm="12"
+        <v-col  class="pb-10 pb-sm-2 pb-" sm="12"
           v-for="theme in filteredNames"
           :key="theme.name"
           
@@ -114,18 +113,39 @@
             design: 'Kirill Deev',
             data: '2020',
             github: 'https://github.com/deevkv/portfolio',
-            imageSrc: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
+            imageSrc: require('@/assets/img/portfolio.jpg'),
             src: 'https://deevkv.github.io',
             category: 'web_sites'
           }   
-        ],
-        /*names: ['Vlad', 'Max', 'Elena']*/
-        names: [
-          {id: '1', name: "Вася"},
-          {id: '2', name: "Петя"},
-          {id: '3', name: "Маша"}
         ]
       }
+    },
+    methods: {
+      textAnimation: function(i) {
+        var dataText = [ "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, odit!"];
+
+        // проверить, существует ли dataText [i]
+        if (i < dataText[i].length) {
+         // текст существует! запустить анимацию пишущей машинки
+         typeWriter(dataText[i], 0);
+        }
+  
+        function typeWriter(text, i) {
+          // проверить, что текст еще не закончен
+          if (i < (text.length)) {
+            // добавить следующий символ в h1
+           document.getElementById("typingText").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+            // вызов функции для следующего символа
+            setTimeout(function() {
+              typeWriter(text, i + 1)
+            }, 20);
+          }
+        }
+      }
+    },
+    mounted() {
+     this.textAnimation(0);
     },
     computed: {
       filteredNames: function() {
@@ -151,6 +171,8 @@
   .portfolio {
     height: 100%;
     background-color: $body-background;
+    /* background-image: url(../assets/img/classy-fabric.png); */
+    background-repeat: repeat;
     color: #fff;
   }
 
@@ -172,12 +194,21 @@
 
   .portfolio-toolbar__title {
     color: $main-color;
-    padding: 0 15px;
     padding-bottom: 5px;
+    font-weight: normal;
+    font-size: 1rem;
   }
 
   .portfolio-toolbar__description {
     color: #fff;
+    border-right: 0.5em solid; /* каретка */
+    animation: caret 1s steps(1) infinite; 
+  }
+
+  @keyframes caret {
+    50% {
+      border-color: transparent;
+    }
   }
 
   .portfolio-toolbar__button {
@@ -247,9 +278,9 @@
 
   .portfolio-card__image {
     height: 160px;
-    border-left: 8px solid #202020;
-    border-right: 8px solid #202020;
-    opacity: 0.8;
+    border-left: 5px solid #4c4a4a;
+    border-right: 5px solid #4c4a4a;
+    opacity: 0.7;
     transition: 0.2s;
     animation: showImage 1s;
     animation-fill-mode: forwards;
@@ -284,6 +315,10 @@
 
     .portfolio-card__image {
       height: 100px;
+      
+      border-bottom: 5px solid #4c4a4a;
+      border-left: none;
+      border-right: none;
     }
 
     .portfolio-card__description-block::before {
