@@ -2,8 +2,7 @@
   <section class="portfolio">
     <v-container>
       <v-row>
-        <v-col xl="12"
-        >
+        <v-col xl="12">
         <section class="portfolio-toolbar">
           <h1 class="pb-5 px-4 portfolio-toolbar__title">Truevers: <span id="typingText" class="portfolio-toolbar__description"></span></h1>
           <div>
@@ -32,7 +31,7 @@
           <v-card 
             dark
             tile
-            class="mx-auto portfolio-card"
+            class="mx-auto elevation-3 portfolio-card"
             color="#141414"
             min-height="160"
           >
@@ -75,7 +74,7 @@
         portfolio: [
           {
             name: 'Meduza OS',
-            description: 'Hello i am description',
+            description: 'Linux distribution web site.',
             stack: 'HTML, CSS, JS',
             design: 'Kirill Deev',
             data: '2019',
@@ -86,7 +85,7 @@
           },
           {
             name: 'Truevers Music',
-            description: 'Hello i am description',
+            description: "Composer's website with the ability to listen to music",
             stack: 'HTML, CSS, JS',
             design: 'Kirill Deev',
             data: '2019',
@@ -97,7 +96,7 @@
           },
           {
             name: 'Tatoo Studio',
-            description: 'Hello i am description',
+            description: 'Landing Page tattoo studio',
             stack: 'HTML, CSS, JS',
             design: 'Kirill Deev',
             data: '2019',
@@ -108,7 +107,7 @@
           },
           {
             name: 'Portfolio',
-            description: 'Hello i am description',
+            description: 'The site you are currently on',
             stack: 'Vue.js, Vuetify',
             design: 'Kirill Deev',
             data: '2020',
@@ -122,7 +121,7 @@
     },
     methods: {
       textAnimation: function(i) {
-        var dataText = [ "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, odit!"];
+        var dataText = [ "All below are works with exclusive design and meet the requirements of modern web development."];
 
         // проверить, существует ли dataText [i]
         if (i < dataText[i].length) {
@@ -175,17 +174,6 @@
     background-repeat: repeat;
     color: #fff;
   }
-
-  /* .portfolio:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.7;
-    background: linear-gradient(50deg, #820af5, #0aabf5, #f50ae2, #f59d0a);
-  } */
 
   .portfolio-toolbar {
     position: relative;
@@ -306,6 +294,7 @@
   @media (max-width: 600px) {
 
     .portfolio-toolbar__title {
+      min-height: 120px;
       padding-bottom: 15px;
     }
 

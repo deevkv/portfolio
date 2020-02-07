@@ -3,41 +3,47 @@
     <v-container class="home__container">
       <v-row justify="center" align="center">
         <v-col>
-          <div class="home__wraper-card" ref="windowWrapper">
-            <v-card
+          <v-card
+            dark
+            tile
+            class="mx-auto elevation-8 home__card"
+            max-width="700"
+            min-height="250"
+            color="#141414"
+            ref="windowHome"
+            @mouseover="hover = true"
+            @mouseleave="hover = false"    
+          >
+            <v-system-bar
+              color="#434343"
               dark
-              tile
-              class="mx-auto elevation-8 home__card"
-              max-width="700"
-              min-height="250"
-              color="#141414"
-              ref="windowHome"
-              @mouseover="hover = true"
-              @mouseleave="hover = false"
-              
+              @mousedown="draggable"
+              :class="{active: hover} "
+               
             >
-              <v-system-bar
-                color="#434343"
-                dark
-                @mousedown="draggable"
-                :class="{active: hover} "
-                 
-              >
-                <v-spacer></v-spacer>
-                <button class="home__card-button-close"></button>
-              </v-system-bar>
-              <h1 class="home__card-title">Truevers:<span id="typingTextHome" class="home__card-description"></span></h1>
-              <v-card-text class="home__card-button-block">
-                <a
-                  class="home__card-button"
+              <v-spacer></v-spacer>
+              <button 
+                class="home__card-button-close"
+                @click="closeWindowHome"
+                ></button>
+            </v-system-bar>
+            <div class="px-3 py-4 home__card-title-wrapper">
+              <h1 class="pb-1 home__card-title">Truevers:<span id="typingTextHome" class="home__card-description"></span></h1>
+              <div class="px-0 home__card-button-block">
+                <router-link 
                   v-for="link in links"
                   :key="link.title"
                   :to="link.url"
+                  tag="span"
+                >
+                <button
+                  class="home__card-button"
                   text
-                >/{{link.title}}</a>
-              </v-card-text>
-            </v-card>
-          </div>
+                >/{{link.title}}</button>
+                </router-link>
+              </div>
+            </div>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -93,7 +99,7 @@
         };
       },
       textAnimation: function(i) {
-        var dataText = [ "Hello, my friend. Welcome to my site"];
+        var dataText = [ "Welcome to the website. I'm in the  frontend development. You can find examples of works in the section of the portfolio."];
 
         // проверить, существует ли dataText [i]
         if (i < dataText[i].length) {
@@ -110,9 +116,12 @@
             // вызов функции для следующего символа
             setTimeout(function() {
               typeWriter(text, i + 1)
-            }, 50);
+            }, 20);
           }
         }
+      },
+      closeWindowHome: function() {
+        alert('This function is in development.');
       }
     },
     mounted() {
@@ -131,18 +140,9 @@
     color: #fff;
   }
 
-    /* .home:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.7;
-      background: linear-gradient(45deg, #820af5, #0aabf5, #f50ae2, #f59d0a);
-      opacity: 1;
-      transition: 5s;
-    } */
+/*   .home__wraper-card .windowClose {
+  display: none;
+} */
 
   .home__card {
     max-width: 700px;
@@ -155,6 +155,7 @@
 }  */
 
   .home__card-title {
+    min-height: 90px;
     font-size: 1.1rem !important; 
     font-weight: normal !important;
     color: $main-color;
@@ -174,7 +175,8 @@
   }
 
   .home__card-button {
-    margin-right: 10px;
+    color: #37ff58;
+    margin-right: 1em;
     font-size: 1.1rem;
     font-weight: normal !important;
   }
@@ -257,5 +259,23 @@
     width: 100px;
     height: 100px;
     background: #000;
+  }
+
+  @media (max-width: 600px) {
+    .home__card-title {
+      min-height: 163px;
+    }
+  }
+
+  @media (max-width: 400px) {
+
+    .home__card-button-block {
+      width: 180px;
+    }
+
+    .home__card-button {
+      margin-top: 10px; 
+    }
+
   }
 </style>

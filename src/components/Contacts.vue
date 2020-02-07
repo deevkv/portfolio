@@ -7,7 +7,7 @@
               <v-card
                 dark
                 tile
-                class="mx-auto elevation-8 contacts__card" 
+                class="mx-auto elevation-5 contacts__card" 
                 min-height="250"
                 color="#141414"
                 ref="windowHome"
@@ -50,7 +50,7 @@
     },
     methods: {
       textAnimation: function(i) {
-        var dataText = [ "If you want to collaborate or simply just say hello" ];
+        var dataText = [ "If you want to collaborate or simply just say hello don't hesitate to reach out!" ];
 
         // проверить, существует ли dataText [i]
         if (i < dataText[i].length) {
@@ -97,6 +97,9 @@
   .contacts__card {
     max-width: 600px;
     min-height: 340px;
+    opacity: 0;
+    animation: show 2s;
+    animation-fill-mode: forwards;
   } 
 
   .contacts__card:hover {
@@ -141,7 +144,7 @@
   .contacts__card-email {
     color: #aaaab0 !important;
     opacity: 0;
-    animation: show 1.8s;
+    animation: show 2s;
     animation-fill-mode: forwards;
   }
 
@@ -158,5 +161,11 @@
       opacity:1;
     }
   }
+
+  @media (max-width: 600px) {
+    .contacts__card-title {
+      min-height: 96px;
+    }  
+  } 
 
 </style>

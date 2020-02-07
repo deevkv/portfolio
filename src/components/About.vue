@@ -1,20 +1,22 @@
 <template>
   <section class="about">
       <v-container class="about__container">
-        <v-row justify="center" align="center">
+        <v-row justify="center">
           <v-col>
             <v-card
               dark
               tile
-              class="py-7 px-sm-7 py-sm-7 elevation-8 mx-auto about__card "
-              color="#141414"
+              outlined
+              class="mx-auto about__card "
+              color="transparent"
+              border="none"
               ref="windowHome"
             >
-              <h1 class="px-xs-10 px-7 pt-3 pb-5 about__card-title">Truevers: <span id="typingTextAbout" class="about__card-description"></span></h1>
+              <h1 class="pt-4 pb-6 about__card-title">Truevers: <span id="typingTextAbout" class="about__card-description"></span></h1>
               <img
                 width="643"
                 height="523"
-                class="mx-auto about-card__image"
+                class="mx-auto elevation-5 about-card__image"
                 src="@/assets/img/stack.svg">            
             </v-card>
           </v-col>
@@ -30,7 +32,7 @@
     },
     methods: {
       textAnimation: function(i) {
-        var dataText = [ "Truevers is my stack Lorem ipsum dolor sit amet, consectetur"];
+        var dataText = [ "I design UX / UI interfaces, adaptive and responsive layout. I have extensive knowledge of front-end JavaScript, and also have experience working with the popular Vue.js. I use modern tools of preprocessors and assemblers."];
 
         // проверить, существует ли dataText [i]
         if (i < dataText[i].length) {
@@ -77,14 +79,14 @@
 
   .about__card {
     max-width: 840px;
-  } 
+  }
 
   .about__card:hover {
     background: #fff;
   } 
 
   .about__card-title {
-    min-height: 80px;
+    min-height: 115px;
     margin: 0;
     padding: 0;
     font-weight: normal;
@@ -108,8 +110,11 @@
     width: 100%;
     height: auto;
     padding: 28px;
+    background: #141414;
+    opacity: 0;
+    animation: show 2s;
+    animation-fill-mode: forwards;
   }
-
 
   @keyframes show{
     0%{
@@ -118,11 +123,15 @@
     100% {
       opacity:1;
     }
-  }
+  } 
 
   @media (max-width: 600px) {
     .about__container {
       height: 80%;
+    }
+
+    .about__card-title {
+      min-height: 258px;
     }
   }  
 

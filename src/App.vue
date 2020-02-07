@@ -43,6 +43,13 @@
     <v-content>
       <router-view></router-view>
     </v-content>
+    <v-footer
+      dark
+      color="#2b3430"
+    >
+      <v-spacer></v-spacer>
+      <div class="footer-title">Beta 1.0</div>
+    </v-footer>
   </v-app>
 </template>
 
@@ -63,6 +70,14 @@
   * {
     font-family: "JetBrainsMono-Regular", sans-serif;
   }
+
+  ::-webkit-scrollbar { width: 3px; height: 3px;}
+ /*  ::-webkit-scrollbar-button {  background-color: #696969; } */
+  ::-webkit-scrollbar-track {  background-color: #999;}
+  ::-webkit-scrollbar-track-piece { background-color: #000;}
+  ::-webkit-scrollbar-thumb { height: 50px; background-color: #696969; border-radius: 3px;}
+  ::-webkit-scrollbar-corner { background-color: #999;}
+  ::-webkit-resizer { background-color: #696969;}
 
   .navigation-drawer {
     z-index: 10000;
@@ -121,9 +136,12 @@
   .v-btn--active::before {
     opacity: 0.03 !important;
     background-color: $visit-color !important;
-  } 
+  }
 
-
+  .footer-title {
+    padding: 0 0.3em;
+    background: #000;
+  }
 
 </style>
   
