@@ -170,7 +170,6 @@
   .portfolio {
     height: 100%;
     background-color: $body-background;
-    /* background-image: url(../assets/img/classy-fabric.png); */
     background-repeat: repeat;
     color: #fff;
   }

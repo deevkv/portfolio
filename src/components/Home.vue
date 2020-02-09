@@ -136,7 +136,7 @@
   .home {
     height: 100%;
     background: $body-background;
-    /* background-image: url(../assets/img/classy-fabric.png); */
+    /* background-image: url(../assets/img/bg.jpg); */
     color: #fff;
   }
 
@@ -253,6 +253,7 @@
   .active {
     background: $main-color /* #5dfa8b */ !important;
     transition: .5s;
+    cursor: move;
   }
 
   .colorRed {
@@ -263,7 +264,7 @@
 
   @media (max-width: 600px) {
     .home__card-title {
-      min-height: 163px;
+      min-height: 150px;
     }
   }
 

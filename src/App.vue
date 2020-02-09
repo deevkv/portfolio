@@ -45,7 +45,7 @@
     </v-content>
     <v-footer
       dark
-      color="#2b3430"
+      color="#000"
     >
       <v-spacer></v-spacer>
       <div class="footer-title">Beta 1.0</div>

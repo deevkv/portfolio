@@ -84,7 +84,7 @@
   .contacts {
     height: 100%;
     background: $body-background;
-    /* background-image: url(../assets/img/classy-fabric.png); */
+    /* background-image: url(../assets/img/bg.jpg); */
     color: #fff;
   }
 

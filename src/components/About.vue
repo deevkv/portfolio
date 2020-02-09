@@ -66,7 +66,6 @@
   .about {
     height: 100%;
     background: $body-background;
-    /* background-image: url(../assets/img/classy-fabric.png); */
     color: #fff;
   }
 
