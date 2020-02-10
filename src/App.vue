@@ -80,7 +80,7 @@
   ::-webkit-resizer { background-color: #696969;}
 
   .navigation-drawer {
-    z-index: 10000;
+    z-index: 2000;
   }
 
   .navigation-drawer__list {

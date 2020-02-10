@@ -2,7 +2,7 @@
   <section class="portfolio">
     <v-container>
       <v-row>
-        <v-col xl="12">
+        <v-col  cols="12" xl="8" offset-xl="2">
         <section class="portfolio-toolbar">
           <h1 class="pb-5 px-4 portfolio-toolbar__title">Truevers: <span id="typingText" class="portfolio-toolbar__description"></span></h1>
           <div>
@@ -23,14 +23,13 @@
         </v-col>
       </v-row>    
       <v-row>
-        <v-col  class="pb-10 pb-sm-2 pb-" sm="12"
+        <v-col  class="pb-10 pb-sm-6 pb-md-2" cols="12" xl="8" offset-xl="2"
           v-for="theme in filteredNames"
           :key="theme.name"
           
         >
           <v-card 
             dark
-            tile
             class="mx-auto elevation-3 portfolio-card"
             color="#141414"
             min-height="160"
@@ -50,7 +49,7 @@
                   <li class="portfolio-card__item">Github:<a class="portfolio-card__github-link" v-bind:href="theme.github" target="_blank">{{ '~' + theme.github.slice(theme.github.lastIndexOf('/'))}}</a></li>
                 </ul>
               </v-col>
-              <v-col  сlass="portfolio-card__image-block" cols="12" sm="3" md="3" lg="3">
+              <v-col  сlass="portfolio-card__image-block" cols="12" sm="12" md="3" lg="3">
                 <v-img
                   class="portfolio-card__image"
                   :src="theme.imageSrc"
@@ -138,7 +137,7 @@
             // вызов функции для следующего символа
             setTimeout(function() {
               typeWriter(text, i + 1)
-            }, 20);
+            }, 10);
           }
         }
       }
@@ -169,9 +168,23 @@
 
   .portfolio {
     height: 100%;
-    background-color: $body-background;
-    background-repeat: repeat;
+    background: $body-background;
+    background-image: url(../assets/img/bg.jpg);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     color: #fff;
+  }
+
+  .portfolio:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: linear-gradient(60deg, #820af5, #0aabf5, #f50ae2, #f59d0a);
   }
 
   .portfolio-toolbar {
@@ -205,7 +218,7 @@
 
   .portfolio-card {
     opacity: 0;
-    animation: show 1.5s;
+    animation: show 1s;
     animation-fill-mode: forwards;
     transition: 0.2s;
   }

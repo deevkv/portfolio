@@ -1,12 +1,17 @@
 <template>
   <section class="home">
     <v-container class="home__container">
-      <v-row justify="center" align="center">
+      <v-row>
+        <v-col cols="12" sm="12" md="12" lg="12" offset-xl="2">
+          <h1 class="home__title">frontend development.<br>ui prototyping.</h1>
+        </v-col>
+      </v-row>    
+      <v-row class="home___card-wrapper" justify="center" align="center">
         <v-col>
           <v-card
             dark
             tile
-            class="mx-auto elevation-8 home__card"
+            class="mx-auto elevation-10 home__card"
             max-width="700"
             min-height="250"
             color="#141414"
@@ -28,7 +33,7 @@
                 ></button>
             </v-system-bar>
             <div class="px-3 py-4 home__card-title-wrapper">
-              <h1 class="pb-1 home__card-title">Truevers:<span id="typingTextHome" class="home__card-description"></span></h1>
+              <h2 class="pb-1 home__card-title">Truevers:<span id="typingTextHome" class="home__card-description"></span></h2>
               <div class="px-0 home__card-button-block">
                 <router-link 
                   v-for="link in links"
@@ -136,18 +141,49 @@
   .home {
     height: 100%;
     background: $body-background;
-    /* background-image: url(../assets/img/bg.jpg); */
+    background-image: url(../assets/img/bg.jpg);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     color: #fff;
   }
+
+  .home:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: linear-gradient(60deg, #820af5, #0aabf5, #f50ae2, #f59d0a);
+  }
+
 
 /*   .home__wraper-card .windowClose {
   display: none;
 } */
 
+  .home__title {
+    position: relative;
+    padding-top: 40px;
+    font-family: 'Zilla Slab Highlight';
+    font-weight: 100;
+    font-size: 3rem;
+    color: #f8f8f8 ;
+    text-transform: uppercase;
+  }
+
+  .home___card-wrapper {
+    display: flex;
+    padding-top: 40px;
+    width: 100%
+  }
+
   .home__card {
     max-width: 700px;
     min-height: 250px;
-    background: rgb(20, 20, 20, 0.8) !important;
+    background: rgb(20, 20, 20) !important;
   } 
 
 /*   .home__card:hover {
@@ -201,13 +237,6 @@
       opacity:1;
     }
   }
-
-  .home__container {
-    display: flex;
-    height: 80%;
-    width: 100%
-  }
-
 
   .home__card::before {
     content: "";
@@ -263,9 +292,24 @@
   }
 
   @media (max-width: 600px) {
-    .home__card-title {
-      min-height: 150px;
+
+    .home__container {
+      display: flex;
+      flex-wrap: wrap;
     }
+
+    .home___card-wrapper {
+      display: flex;
+    }
+    .home__card-title {
+      min-height: 135px;
+    }
+
+    .home__title {
+      padding-top: 15px;
+      font-size: 1.6rem;
+    }
+
   }
 
   @media (max-width: 400px) {
@@ -276,6 +320,15 @@
 
     .home__card-button {
       margin-top: 10px; 
+    }
+
+    .home___card-wrapper  {
+      padding-top: 15px;
+    }
+
+    .home__title {
+      padding-top: 15px;
+      font-size: 1.4rem;
     }
 
   }

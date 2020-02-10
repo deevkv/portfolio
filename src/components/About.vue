@@ -5,7 +5,6 @@
           <v-col>
             <v-card
               dark
-              tile
               outlined
               class="mx-auto about__card "
               color="transparent"
@@ -32,7 +31,7 @@
     },
     methods: {
       textAnimation: function(i) {
-        var dataText = [ "I design UX / UI interfaces, adaptive and responsive layout. I have extensive knowledge of front-end JavaScript, and also have experience working with the popular Vue.js. I use modern tools of preprocessors and assemblers."];
+        var dataText = [ "I design UX interfaces, adaptive and responsive layout. I have extensive knowledge of front-end JavaScript, and also have experience working with the popular Vue.js. My stack:"];
 
         // проверить, существует ли dataText [i]
         if (i < dataText[i].length) {
@@ -49,7 +48,7 @@
             // вызов функции для следующего символа
             setTimeout(function() {
               typeWriter(text, i + 1)
-            }, 20);
+            }, 10);
           }
         }
       }
@@ -66,7 +65,22 @@
   .about {
     height: 100%;
     background: $body-background;
+    background-image: url(../assets/img/bg.jpg);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     color: #fff;
+  }
+
+  .about:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: linear-gradient(60deg, #820af5, #0aabf5, #f50ae2, #f59d0a);
   }
 
   .about__container {
@@ -110,8 +124,10 @@
     height: auto;
     padding: 28px;
     background: #141414;
+    border: 2px solid #303030 !important;
+    border-radius: 5px !important;
     opacity: 0;
-    animation: show 2s;
+    animation: show 1s;
     animation-fill-mode: forwards;
   }
 
@@ -130,7 +146,7 @@
     }
 
     .about__card-title {
-      min-height: 258px;
+      min-height: 185px;
     }
   }  
 

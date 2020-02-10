@@ -6,7 +6,7 @@
             <div class="contacts__wraper-card" ref="windowWrapper">
               <v-card
                 dark
-                tile
+                
                 class="mx-auto elevation-5 contacts__card" 
                 min-height="250"
                 color="#141414"
@@ -67,7 +67,7 @@
             // вызов функции для следующего символа
             setTimeout(function() {
               typeWriter(text, i + 1)
-            }, 20);
+            }, 10);
           }
         }
       }
@@ -84,8 +84,22 @@
   .contacts {
     height: 100%;
     background: $body-background;
-    /* background-image: url(../assets/img/bg.jpg); */
+    background-image: url(../assets/img/bg.jpg);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     color: #fff;
+  }
+
+  .contacts:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: linear-gradient(60deg, #820af5, #0aabf5, #f50ae2, #f59d0a);
   }
 
   .contacts__container {
@@ -98,8 +112,9 @@
     max-width: 600px;
     min-height: 340px;
     opacity: 0;
-    animation: show 2s;
+    animation: show 1s;
     animation-fill-mode: forwards;
+    border: 2px solid #303030 !important;
   } 
 
   .contacts__card:hover {
