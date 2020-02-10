@@ -183,7 +183,7 @@
   .home__card {
     max-width: 700px;
     min-height: 250px;
-    background: rgb(20, 20, 20) !important;
+    background: rgb(0, 0, 0, 0.75) !important;
   } 
 
 /*   .home__card:hover {
