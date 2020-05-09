@@ -51,22 +51,6 @@
         </v-col>
       </v-row>
       <v-row cols="12" justify="center" aling="center">
-       <!--  <div class="home__info">
-          <v-col class="home__info-icon" cols="12" sm="12" md="12" lg="12">
-            <v-img
-              src="@/assets/img/home__icon-UI.svg"
-            >
-            </v-img> 
-            <v-img
-              src="@/assets/img/home__icon-tools.svg"
-            >
-            </v-img> 
-            <v-img
-              src="@/assets/img/home__icon-speed.svg"
-            >
-            </v-img> 
-          </v-col>
-        </div> -->
       </v-row> 
     </v-container>
     <v-container>
@@ -77,6 +61,7 @@
               md="3"
               sm="3"
               cols="12"
+              class="home__info-block"
             >
               <v-img class="home__icon" src="@/assets/img/home__icon-UI.svg"></v-img>
               <span class="home__icon__title">Exclusive design</span>
@@ -87,6 +72,7 @@
               md="3"
               sm="3"
               cols="12"
+              class="home__info-block"
             >
               <v-img class="home__icon" src="@/assets/img/home__icon-tools.svg"></v-img>
               <span class="home__icon__title-center">Use of modern tools</span>
@@ -97,6 +83,7 @@
               md="3"
               sm="3"
               cols="12"
+              class="home__info-block"
             >
               <v-img class="home__icon" src="@/assets/img/home__icon-speed.svg"></v-img>
               <span class="home__icon__title">High development speed</span>
@@ -258,12 +245,18 @@
   }
 
   .home__info {
+    padding-top: 20px;
     padding-bottom: 200px;
+  }
+
+  .home__info-block {
+    margin-top: 30px;
   }
 
   .home__icon {
     width: 128px;
     margin: 0 auto;
+
   }
 
   .home__icon__title, .home__icon__title-center {
