@@ -216,7 +216,7 @@
     display: flex;
     padding-top: 40px;
     width: 100%;
-    height: 400px;
+    height: 290px;
     margin: 0;
   }
 
