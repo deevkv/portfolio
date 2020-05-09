@@ -23,8 +23,7 @@
               color="#434343"
               dark
               @mousedown="draggable"
-              :class="{active: hover} "
-               
+              :class="{active: hover}"
             >
               <v-spacer></v-spacer>
               <button 
@@ -51,7 +50,59 @@
           </v-card>
         </v-col>
       </v-row>
+      <v-row cols="12" justify="center" aling="center">
+       <!--  <div class="home__info">
+          <v-col class="home__info-icon" cols="12" sm="12" md="12" lg="12">
+            <v-img
+              src="@/assets/img/home__icon-UI.svg"
+            >
+            </v-img> 
+            <v-img
+              src="@/assets/img/home__icon-tools.svg"
+            >
+            </v-img> 
+            <v-img
+              src="@/assets/img/home__icon-speed.svg"
+            >
+            </v-img> 
+          </v-col>
+        </div> -->
+      </v-row> 
     </v-container>
+    <v-container>
+          <v-row class="home__info" justify="center">
+            <v-col 
+              xl="1"
+              lg="2"
+              md="3"
+              sm="3"
+              cols="12"
+            >
+              <v-img class="home__icon" src="@/assets/img/home__icon-UI.svg"></v-img>
+              <span class="home__icon__title">Exclusive design</span>
+            </v-col>
+            <v-col 
+              xl="2"
+              lg="2"
+              md="3"
+              sm="3"
+              cols="12"
+            >
+              <v-img class="home__icon" src="@/assets/img/home__icon-tools.svg"></v-img>
+              <span class="home__icon__title-center">Use of modern tools</span>
+            </v-col>
+            <v-col 
+              xl="1"
+              lg="2"
+              md="3"
+              sm="3"
+              cols="12"
+            >
+              <v-img class="home__icon" src="@/assets/img/home__icon-speed.svg"></v-img>
+              <span class="home__icon__title">High development speed</span>
+            </v-col>
+          </v-row>
+        </v-container>
   </section>  
 </template>
 
@@ -177,7 +228,9 @@
   .home___card-wrapper {
     display: flex;
     padding-top: 40px;
-    width: 100%
+    width: 100%;
+    height: 400px;
+    margin: 0;
   }
 
   .home__card {
@@ -202,6 +255,35 @@
     color: #fff;
     border-right: 0.5em solid; /* каретка */
     animation: caret 1s steps(1) infinite; 
+  }
+
+  .home__info {
+    padding-bottom: 200px;
+  }
+
+  .home__icon {
+    width: 128px;
+    margin: 0 auto;
+  }
+
+  .home__icon__title, .home__icon__title-center {
+    display: block;
+    margin-top: 16px;
+    text-align: center;
+    position: relative;
+    font-size: 18px !important;
+    color: #F8F8F8;
+  }
+
+  .home__icon__title-center {
+    padding: 0px 35px;
+  }
+
+
+  .home__info-icon {
+    display: flex;
+    justify-content: space-between;
+    // width: 50px;
   }
 
   @keyframes caret {
@@ -291,6 +373,12 @@
     background: #000;
   }
 
+  @media (max-width: 1900px) {
+    .home__icon__title-center {
+      padding: 0px 0px;
+    }
+  }
+
   @media (max-width: 600px) {
 
     .home__container {
@@ -309,6 +397,11 @@
       padding-top: 15px;
       font-size: 1.6rem;
     }
+
+    .home__icon__title-center {
+      padding: 0px 0px;
+    }
+
 
   }
 
