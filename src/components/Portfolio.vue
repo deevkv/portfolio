@@ -94,7 +94,7 @@
             category: 'web_sites'
           },
           {
-            name: 'Tatoo Studio',
+            name: 'Tattoo Studio',
             description: 'Landing Page tattoo studio',
             stack: 'HTML, CSS, JS',
             design: 'Kirill Deev',
