@@ -231,8 +231,8 @@
 }  */
 
   .home__card-title {
-    min-height: 90px;
-    font-size: 1.1rem !important; 
+    min-height: 60px;
+    font-size: 1.0rem !important; 
     font-weight: normal !important;
     color: $main-color;
   }
@@ -264,7 +264,7 @@
     margin-top: 16px;
     text-align: center;
     position: relative;
-    font-size: 18px !important;
+    font-size: 1.0rem !important;
     color: #F8F8F8;
   }
 
@@ -288,7 +288,7 @@
   .home__card-button {
     color: #37ff58;
     margin-right: 1em;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     font-weight: normal !important;
   }
 
@@ -401,7 +401,7 @@
   @media (max-width: 400px) {
 
     .home__card-button-block {
-      width: 180px;
+      width: 125px;
     }
 
     .home__card-button {
@@ -414,7 +414,7 @@
 
     .home__title {
       padding-top: 15px;
-      font-size: 1.4rem;
+      font-size: 2.0rem;
     }
 
   }

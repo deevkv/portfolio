@@ -64,7 +64,7 @@
   }
 
   a:visited {
-    color: $visit-color !important;
+    color: #fff !important;
   }
 
   * {
