@@ -266,6 +266,11 @@
     color: #aaaab0;
   }
 
+  .portfolio-card__item a:visited {
+    color: #fdaf50 !important;
+  }
+
+
   .portfolio-card__item span {
     margin-left: 10px;
     color: #fff;
